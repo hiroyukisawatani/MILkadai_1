@@ -1,0 +1,70 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size: 32px;
+}
+header{
+    background-color: navy;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    align-items: center;
+
+}
+
+.title{
+    font-size: 50px;
+    margin: 50px 0 0;
+    color: white;
+}
+main{
+    border-bottom:1px solid #ccc;
+}
+
+.player_hands{
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+.mickey_area{
+    text-align: center;
+}
+.mickey{
+    height: 300px;
+
+}
+.mickey_choice{
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+.mickey_hands{
+    align-items: center;
+    width: 200px;
+    height: 100px;
+}
+footer{
+    background-color: #fff;
+    border-bottom:1px solid #ccc;
+    text-align: center;
+}
+
+ul{
+    padding: 0;
+    border-top: 1px solid #000000;
+    display:table;  /* 定義 */
+    table-layout: fixed;
+    width:100%;
+}
+li{
+    text-align: center;
+    list-style-type:none;
+    border: 1px solid #666;
+    background-color: #FFF;
+    display:table-cell;  /* 定義 */
+    cursor: pointer;
+}
+li:hover{
+    background: #d84f5a;
+    color:#fff;
+}

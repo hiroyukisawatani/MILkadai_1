@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<meta charset="UTF-8">
+<title>myMemoPad</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+<p id="postit"><i class="far fa-sticky-note"></i></p>
+<h1>Memo Pad</h1>
+<button id="new-memo"><i class="fas fa-plus"></i> Add Memo</button>
+</header>
+<main style="display:none">
+    <div id="memo-input">
+    <input type="text" id="key">
+    <textarea id="memo">
+    </textarea>
+    <button id="save">Save</button>
+    </div>
+</main>
+<table id="list">
+<!-- ここに追加データが挿入される -->
+</table>
+<button id="clear">Clear All</button>
+<script>
+$("main").slideDown(500);
+$("#memo-input").hide();
+$(function(){
+setInterval(function(){
+var now = new Date();
+var y = now.getFullYear();
+var m = now.getMonth() + 1;
+var d = now.getDate();
+var w = now.getDay();
+var wd = ['日', '月', '火', '水', '木', '金', '土'];
+var h = now.getHours();
+var mi = now.getMinutes();
+var s = now.getSeconds();
+$('#date').text(y + '/' + m + '/' + d + '  ' + h + ':' + mi + ':' + s + '  ' + '(' + wd[w] + ')');
+}, 1000);
+});
+
+// 新しいメモ作成
+$("#new-memo").on("click",function(){
+    $("#memo-input").show()
+})
+
+//1.Save クリックイベント
+$("#save").on("click",function(){
+    const key =  $("#date").text() +"     " + $("#key").val();
+    const value = $("#memo").val();
+    localStorage.setItem(key,value);
+    const html = '<tr><th>'+key+'</th><td>'+value+'</td><td><button id="deletebtn" onclick="coldel(this);localStorage.removeItem(\''+key+'\')" ><i class="fas fa-trash"></i></button></td></tr>';
+    $("#list").append(html);
+    
+    alert("保存しました");
+
+})
+
+//2.clear クリックイベント
+$("#clear").on("click",function(){
+    if(!confirm("全てのメモを削除しますか?")){
+        return;
+    }
+    localStorage.clear();
+    $("#list").empty();
+    $("#key").val("");
+    $("#memo").val("");
+    alert("削除しました")
+})
+
+//3.ページ読み込み：保存データ取得表示
+for(let i=0; i<localStorage.length; i++ ){
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    const html = '<tr><th>'+key+'</th><td>'+value+'</td><td><button id="deletebtn" onclick="coldel(this);localStorage.removeItem(\''+key+'\')"><i class="fas fa-trash"></i></button></td></tr>';
+    $("#list").append(html);
+}
+
+// ページ更新機能
+$(document).ready(function() {
+    $("#postit").click(function() {
+        $(location).prop("href", location.href);
+    })
+});
+
+
+$("#deletebtn").on("hover",function(){
+    $(this).css('background', '	#0000FF');
+})
+
+
+// 行削除機能
+function coldel(obj) {
+    // 削除ボタンを押された行を取得
+    tr = obj.parentNode.parentNode;
+    // trのインデックスを取得して行を削除する
+    tr.parentNode.deleteRow(tr.sectionRowIndex);
+    var removeStorage = function(key){
+    localStorage.removeItem(key);
+    key = "";
+    viewStorage();
+};
+}
+
+</script>
+<footer><p id="date"></p></footer>
+</body>
+</html>

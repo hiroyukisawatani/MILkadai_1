@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<title>Paper Scissors Rock</title>
+</head>
+<body>
+
+<header>
+  <h1 class="title">Let's play Paper, Scissors & Rock</h1>
+</header>
+
+<main>
+    <div class="player_area">
+        <h1 class="player_hands">What's your hand?</h1>  
+        <ul>
+            <li id="gu_btn"> <img src="./img/player_rock.jpg" alt="player_rock"> </li>
+            <li id="cho_btn"><img src="./img/player_scissors.jpg" alt="player_scissors"> </li>
+            <li id="par_btn"><img src="./img/player_paper.jpg" alt="player_paper"> </li>
+        </ul>
+    </div>
+    <div class="mickey_area">
+    <div class="mickey_choice">Mickey's hand</div>
+    <img class="mickey" src="./img/mickey.jpg" alt="mickey">
+    <img id="mickey_hands" src="./img/mickey_rock.jpg" alt="">
+    </div>
+</main>
+
+<footer></footer>
+<script>
+//グーを押した場合
+$("#gu_btn").on("click",function(){
+    // 1.乱数（1－3）
+    const r = Math.ceil(Math.random()*3);
+    // 2．if分岐処理
+    let view = "";
+    if(r==1){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_rock.jpg"
+    }
+    if(r==2){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_scissors.jpg"
+    }
+    if(r==3){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_paper.jpg"
+    }
+    // 3．表示処理
+    $("#pc_hands").html(view);
+    
+    // if分岐処理
+    let kekka = "";
+    if(r==1){
+        kekka = 'Tie';
+    }
+    if(r==2){
+        kekka = 'You Win';
+    }
+    if(r==3){
+        kekka = 'You Lose';
+    }
+
+    setTimeout(function(){
+        alert(kekka);
+    },1000);
+    return false;
+});
+
+    
+//チョキを押した場合
+$("#cho_btn").on("click",function(){
+    // 1.乱数（1－3）
+    const r = Math.ceil(Math.random()*3);
+    // 2．if分岐処理
+    let view = "";
+    if(r==1){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_rock.jpg"
+    }
+    if(r==2){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_scissors.jpg"
+    }
+    if(r==3){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_paper.jpg"
+    }
+    // 3．表示処理
+    $("#pc_hands").html(view);
+    
+    // if分岐処理
+    let kekka = "";
+    if(r==1){
+        kekka = 'You Lose';
+    }
+    if(r==2){
+        kekka = 'Tie';
+    }
+    if(r==3){
+        kekka = 'You Win';
+    }
+
+    setTimeout(function(){
+        alert(kekka);
+    },1000);
+    return false;
+});
+
+//パーを押した場合
+$("#par_btn").on("click",function(){
+    // 1.乱数（1－3）
+    const r = Math.ceil(Math.random()*3);
+    // 2．if分岐処理
+    let view = "";
+    if(r==1){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_rock.jpg"
+    }
+    if(r==2){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_scissors.jpg"
+    }
+    if(r==3){
+        let mickey_hands = document.querySelector("#mickey_hands");
+        mickey_hands.src = "./img/mickey_paper.jpg"
+    }
+    // 3．表示処理
+    $("#pc_hands").html(view);
+    
+    // if分岐処理
+    let kekka = "";
+    if(r==1){
+        kekka = 'You Win';
+    }
+    if(r==2){
+        kekka = 'You Lose';
+    }
+    if(r==3){
+        kekka = 'Tie';
+    }
+
+    setTimeout(function(){
+        alert(kekka);
+    },1000);
+    return false;
+});
+    
+    
+    
+
+</script>
+</body>
+</html>
