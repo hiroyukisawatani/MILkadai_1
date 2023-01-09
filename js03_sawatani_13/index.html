@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 <meta charset="utf-8">
+<link rel="stylesheet" href="css/style.css">
 <title>Chatアプリ</title>
 </head>
 <body>
 
 <!-- コンテンツ表示画面 -->
-<div>
+<div id="line">
+    <div id="output"></div>
+    <button id="clear">削除</button>
+    <ul id="subImg">
+      <li class="current"><img src="./img/buke.png" class="icon"></li>
+      <li ><img src="./img/caram.png" class="icon"></li>
+      <li class="icon"><img src="./img/tuku.jpg" class="icon"></li>
+    </ul>
+
+    <div id="mainImg">
+      <img src="./img/buke.png" class="icon">
+    </div>
     <div>
-    名前: <input type="text" id="uname">
+      名前: <input type="text" id="uname">
     </div>
     <div>
     <textarea name="" id="text" cols="30" rows="10"></textarea>
     <button id="send">送信</button>
     </div>
-    <div id="output"></div>
-    </div>
 
-
-
-
-
-
-
+</div>
 
 <!--/ コンテンツ表示画面 -->
 
-
-
 <!-- JQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/jquery-2.1.3.min.js"></script>
 <!-- JQuery -->
-
 
 <!--** 以下Firebase **-->
 <script type="module">
@@ -44,7 +47,7 @@
             from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.14.0/firebase-database.js";
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyCTOE2JvH4VgGm6Q0E4cVlX5J6cSAEmcOA",
+      apiKey: ,
       authDomain: "fir-demo-a4ab3.firebaseapp.com",
       projectId: "fir-demo-a4ab3",
       storageBucket: "fir-demo-a4ab3.appspot.com",
@@ -58,6 +61,24 @@
     const db = getDatabase(app); 
     // realtimedatabase 内のchatを使う
     const dbRef = ref(db, "chat");  
+
+
+    // アイコン切り替え機能
+    $(function(){
+      $('#subImg img').on('click',function(){
+        //mainに切り替えるimgのsrc取得
+        const img = $(this).attr('src');
+        //currentクラス付け替え
+        $('#subImg li').removeClass('current');
+        $(this).parent().addClass('current');
+        //fadeOutできたらsrc変更してfadeIn
+        $('#mainImg img').fadeOut(50, function() {
+            $('#mainImg img').attr('src', img).on('load', function() {
+                 $(this).fadeIn();
+            })
+       })
+      });
+    });
 
     // #sendがクリックされたら　名前・本文情報を取得する
     $("#send").on("click", function () {
@@ -89,6 +110,17 @@
         set(newPostRef, msg);
       }
     })
+
+
+
+    $('#clear').click(function (){
+                alert("ok")
+                deleteDoc(app(db, "text", "uname"));
+            });
+
+
+    
+    
 
   </script>
 

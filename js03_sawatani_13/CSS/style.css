@@ -1,0 +1,33 @@
+body {
+  font-size: 32px;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+}
+#subImg{
+  height: 50px;
+  display: flex;
+  list-style: none;
+}
+#mainImg{
+  height: 50px;
+}
+.icon{
+  height: 50px;
+}
+#output{
+  height: 300px;
+  width: 500px;
+  border: 1px solid;
+  overflow: scroll;
+}
+
+textarea {
+  margin: 10px 3%;
+  width: 95%;
+  height: 100px;
+  font-size: 80%;
+  box-shadow: 3px 3px 3px 3px #555;
+  background-color: rgb(241, 239, 239);
+}
